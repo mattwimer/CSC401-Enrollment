@@ -2,6 +2,11 @@ public class CourseTree extends AVLTree{
     private int startTime;
     private int endTime;
     
+    public CourseTree(int a, int b){
+        super();
+        startTime = a;
+        endTime = b;
+    }
     
     public int getStartTime() {
         return startTime;
