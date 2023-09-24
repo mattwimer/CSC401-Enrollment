@@ -12,7 +12,7 @@ public class Main {
             int courseCode;
             do {
                 courseCode = (int)(Math.random()*8999) + 1000; // random number from 1000 to 9999
-            } while(!courses.containsKey(courseCode));
+            } while(!courses.containsKey(courseCode)); // reroll code until a unique course code is generated
             AVLTree tree = new AVLTree();
             courses.put(courseCode, tree);
         }
