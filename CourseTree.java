@@ -20,7 +20,9 @@ public class CourseTree extends AVLTree{
     // public void setEndTime(int endTime) {
     //     this.endTime = endTime;
     // }
-    public boolean timeConflict(int time1, int time2){
+
+    
+    public boolean timeConflict(int time1, int time2){ // returns true if conflict exists
         if(startTime < time1 && time1 < endTime)
             return true;
         else if(startTime < time2 && time2 < endTime)
@@ -28,4 +30,7 @@ public class CourseTree extends AVLTree{
         return false;
     }
     
+    public boolean timeConflict(CourseTree other){
+        return timeConflict(other.getStartTime(), other.getEndTime());
+    }
 }
