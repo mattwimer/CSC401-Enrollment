@@ -22,7 +22,7 @@ public class Main {
         //     System.out.println(cc);
 
         // testing enroll
-        for(int i = 0; i < 10; i++){ // 10 with prints, 80 in the end
+        for(int i = 0; i < 80; i++){ // 10 with prints, 80 in the end
             //make a student id
             int id;
             do{
@@ -34,7 +34,7 @@ public class Main {
             for(int courseCode : courses.keySet()){
                 if((int)(Math.random()*2) == 0) // 50% chance of trying to enroll
                 {
-                    System.out.println("Student "+id+" Trying to enroll in " + courseCode);
+                    // System.out.println("Student "+id+" Trying to enroll in " + courseCode);
                     // **the following code would be in a function called enroll, but its obnoxious with all of the testing to write so I won't
                     CourseTree course = courses.get(courseCode); // course we are attempting to enroll in
                     boolean timeConflictExists = false;
@@ -43,19 +43,20 @@ public class Main {
                         CourseTree existingCourse = courses.get(existingCourseCode);
                         if(existingCourse.timeConflict(course)){
                             timeConflictExists = true;
-                            System.out.println("Student "+id+" Failed to enroll in class "+courseCode+", conflict with "+existingCourseCode);
+                            // System.out.println("Student "+id+" Failed to enroll in class "+courseCode+", conflict with "+existingCourseCode);
                         }
                     }
                     if(!timeConflictExists){
                         students.get(id).add(courseCode);
-                        System.out.println("Student "+id+" Successfully enrolled in class "+courseCode);
+                        course.root = course.insert(course.root, id);
+                        // System.out.println("Student "+id+" Successfully enrolled in class "+courseCode);
                     }
                 }
             }
         }
         students.put(0, new ArrayList<Integer>()); // to test edge case if a student has no classes
 
-        // testing remove
+        // testing remove ** this demonstrates student schedule retrieval
         for (int id : students.keySet()){
             if((int)(Math.random()*10) == 0 || id == 0){ // 10% chance to remove a class, always test remove on edge case
                 List<Integer> enrolledClasses = students.get(id);
@@ -76,5 +77,10 @@ public class Main {
             }
         }
 
+        // testing class roster
+        for (int courseCode : courses.keySet()){
+            System.out.print("Course "+courseCode+": ");
+            courses.get(courseCode).displayInfo();
+        }
     }
 }
