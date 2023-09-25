@@ -33,4 +33,10 @@ public class CourseTree extends AVLTree{
     public boolean timeConflict(CourseTree other){
         return timeConflict(other.getStartTime(), other.getEndTime());
     }
+
+    public void displayInfo(){
+        System.out.println("The course begins at "+startTime+" and ends at "+endTime+". The following are students enrolled in the course: ");
+        super.inOrderTraversal(super.root);
+        System.out.println();
+    }
 }
